@@ -27,10 +27,11 @@ func NewCustomer(name string) (Customer, error) {
 	}
 
 	return Customer{
-		person:       person,
-		products:     make([]*entity.Item, 0),
-		transactions: make([]*valueobject.Transaction, 0),
-	}, nil
+			person:       person,
+			products:     make([]*entity.Item, 0),
+			transactions: make([]*valueobject.Transaction, 0),
+		},
+		nil
 }
 
 func (c *Customer) GetId() uuid.UUID {
@@ -43,4 +44,16 @@ func (c *Customer) SetId(id uuid.UUID) {
 	}
 
 	c.person.ID = id
+}
+
+func (c *Customer) GetName() string {
+	return c.person.Name
+}
+
+func (c *Customer) SetName(name string) {
+	if c.person == nil {
+		c.person = &entity.Person{}
+	}
+
+	c.person.Name = name
 }
